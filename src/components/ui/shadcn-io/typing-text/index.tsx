@@ -170,28 +170,41 @@ const TypingText = ({
   const shouldHideCursor =
     hideCursorWhileTyping && (currentCharIndex < textArray[currentTextIndex].length || isDeleting);
 
-  return createElement(
-    Component,
-    {
-      ref: containerRef,
-      className: `inline-block whitespace-pre-wrap tracking-tight ${className}`,
-      ...props
-    },
-    <span className="inline" style={{ color: getCurrentTextColor() }}>
-      {displayedText}
-    </span>,
-    showCursor && (
-      <span
-        ref={cursorRef}
-        className={`inline-block opacity-100 ${shouldHideCursor ? 'hidden' : ''} ${
-          cursorCharacter === '|' 
-            ? `h-5 w-[1px] translate-y-1 bg-foreground ${cursorClassName}` 
-            : `ml-1 ${cursorClassName}`
-        }`}
-      >
-        {cursorCharacter === '|' ? '' : cursorCharacter}
+  // Use a wrapper div to avoid React compiler warning about refs in createElement
+  // Always wrap in a div that receives the ref, regardless of Component type
+  const content = (
+    <>
+      <span className="inline" style={{ color: getCurrentTextColor() }}>
+        {displayedText}
       </span>
-    )
+      {showCursor && (
+        <span
+          ref={cursorRef}
+          className={`inline-block opacity-100 ${shouldHideCursor ? 'hidden' : ''} ${
+            cursorCharacter === '|' 
+              ? `h-5 w-px translate-y-1 bg-foreground ${cursorClassName}` 
+              : `ml-1 ${cursorClassName}`
+          }`}
+        >
+          {cursorCharacter === '|' ? '' : cursorCharacter}
+        </span>
+      )}
+    </>
+  );
+
+  // Always use a wrapper div to avoid React compiler warning
+  // The ref goes on the wrapper div, not on the dynamic Component
+  return (
+    <div ref={containerRef as React.RefObject<HTMLDivElement>} className="inline-block">
+      {createElement(
+        Component,
+        {
+          className: `whitespace-pre-wrap tracking-tight ${className}`,
+          ...props
+        },
+        content
+      )}
+    </div>
   );
 };
 

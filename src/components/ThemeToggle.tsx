@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, startTransition } from 'react';
 import { useTheme } from 'next-themes';
 import { useSettings } from '@/hooks/useSettings';
 import type { Mode } from '@/contexts/settingsContext';
@@ -12,7 +12,9 @@ const ThemeToggle = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    startTransition(() => {
+      setMounted(true);
+    });
   }, []);
 
   const handleThemeToggle = useCallback(() => {

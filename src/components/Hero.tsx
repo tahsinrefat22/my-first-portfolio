@@ -60,7 +60,7 @@ export default function Hero() {
           className="flex items-center justify-center md:justify-end max-w-full"
         >
           <Image
-            src="/Group 11 1.png"
+            src="/Beige Simple Circle Shaped LinkedIn Profile Picture (1).png"
             alt="Tahsin"
             width={800}
             height={800}

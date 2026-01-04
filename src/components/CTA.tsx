@@ -47,7 +47,7 @@ export default function CTA() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground mb-8 md:mb-12 max-w-2xl mx-auto"
           >
-            Let's bring your ideas to life. I'm always open to discussing new projects,
+            Let&apos;s bring your ideas to life. I&apos;m always open to discussing new projects,
             creative ideas, or opportunities to be part of your vision.
           </motion.p>
           

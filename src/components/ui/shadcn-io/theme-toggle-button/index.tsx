@@ -189,6 +189,7 @@ export const ThemeToggleButton = ({
     
     // Use View Transitions API if available, otherwise just call onClick
     if (typeof document !== 'undefined' && 'startViewTransition' in document) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (document as any).startViewTransition(() => {
         onClick?.();
       });
@@ -196,7 +197,7 @@ export const ThemeToggleButton = ({
       // Call the onClick handler if provided
       onClick?.();
     }
-  }, [onClick, variant, url, theme]);
+  }, [onClick, variant, url, theme, start]);
 
   return (
     <Button

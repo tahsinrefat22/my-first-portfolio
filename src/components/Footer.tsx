@@ -4,7 +4,6 @@ import { useState, useRef, useCallback } from 'react';
 import { Facebook, Github, Linkedin, Instagram } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { scrollToSection } from '@/lib/utils';
-import { NAVIGATION_SECTIONS } from '@/lib/constants';
 
 // Navigation links
 const navigationLinks = [

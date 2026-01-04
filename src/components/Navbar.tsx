@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Navbar03, type Navbar03NavItem } from '@/components/ui/shadcn-io/navbar-03';
 import ThemeToggle from '@/components/ThemeToggle';
+import { CustomLogo } from '@/components/CustomLogo';
 import { scrollToSection } from '@/lib/utils';
 import { CONTACT_EMAIL, CV_PDF_PATH, NAVIGATION_SECTIONS } from '@/lib/constants';
 
@@ -148,6 +149,7 @@ const Navbar = () => {
 
   return (
     <Navbar03
+      logo={<CustomLogo />}
       logoHref="#hero"
       navigationLinks={navigationLinks}
       signInText="Download My CV"

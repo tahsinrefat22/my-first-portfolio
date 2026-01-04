@@ -1,8 +1,10 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import {
   Carousel,
   CarouselContent,
@@ -25,39 +27,126 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'Craig Bator',
-    role: 'CEO & Co Founder',
-    company: 'Zendesk',
-    avatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-1.png?width=40&height=40&format=auto',
-    content: "Tahsin is an exceptional developer who delivers high-quality work on time. His expertise in full-stack development and AI is impressive.",
+    name: 'Salahuddin Mahmud',
+    role: 'Senior Full Stack Engineer',
+    company: 'Fusion Infotech Ltd',
+    image: '/salahuddin-mahmud.jpg',
+    content: "I worked closely with him on a complex project and found him to be dedicated, reliable, and strong at problem-solving. He handled challenging responsibilities efficiently and showed a genuine interest in learning and improving. He consistently took initiative and contributed positively to the team.",
   },
   {
     id: 2,
-    name: 'Martin Dorwart',
-    role: 'Product manager',
-    company: 'Orbit',
-    avatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-2.png?width=40&height=40&format=auto',
-    content: "Working with Tahsin has been a great experience. His attention to detail and problem-solving skills make him stand out.",
+    name: 'Minhajur Rahman Mahi',
+    role: 'Jr Full Stack Engineer',
+    company: 'Fusion Infotech Ltd',
+    image: '/minhajur-rahman-mahi.jpeg',
+    content: "I've had the pleasure of working with him as a colleague, and he is genuinely friendly, helpful, and always willing to guide others in solving problems. He consistently looks for creative and efficient approaches rather than settling for obvious solutions. Beyond his technical skills, he is very humble and has a keen eye for detail as a developer. Working with him is both productive and inspiring and fun also.",
   },
   {
     id: 3,
-    name: 'Sarah Johnson',
-    role: 'Lead Designer',
-    company: 'Figma',
-    avatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-3.png?width=40&height=40&format=auto',
-    content:
-      "Tahsin's ability to understand complex requirements and translate them into elegant solutions is remarkable. Highly recommended!",
+    name: 'Mahin Abrar',
+    role: 'Senior Full Stack Engineer',
+    company: 'Fusion Infotech Ltd',
+    image: '/mahin-abrar.jpeg',
+    content: "He excels in requirement analysis, quickly anticipating real-world scenarios, though occasionally drifting from the main architecture. His code is well-organized, well-documented, and follows standard practices. He is friendly, cooperative, calm, and adapt very quickly to new frameworks.",
   },
   {
     id: 4,
-    name: 'Alex Chen',
-    role: 'Frontend Developer',
-    company: 'Vercel',
-    avatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-4.png?width=40&height=40&format=auto',
-    content:
-      'Tahsin has saved us countless hours in development. His component library knowledge and documentation skills are excellent.',
+    name: 'Md Ashfakul Karim Kausik',
+    role: 'Product Manager',
+    company: 'Singularity Corporation',
+    image: '/ashfak.jpeg',
+    content: 'Working with Tahsin is highly energizing. He consistently finds smart, practical solutions when projects seem stuck. He excels at turning complex technical ideas into real results, and while he enjoys experimenting with new technologies, his impact is felt throughout the entire project lifecycle. From fixing production issues to optimizing performance or delivering last-minute features, he always gets the job done.',
   },
 ];
+
+// Individual testimonial card component with expand/collapse
+function TestimonialCard({ 
+  testimonial, 
+  index 
+}: { 
+  testimonial: Testimonial; 
+  index: number;
+}) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const COLLAPSED_HEIGHT = 100; // Height in pixels for collapsed state
+  const CARD_COLLAPSED_HEIGHT = 280; // Fixed height for collapsed cards
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="p-1"
+      style={{ willChange: 'opacity, transform' }}
+    >
+      <Card 
+        className="flex flex-col transition-all duration-300 ease-in-out"
+        style={{ 
+          height: isExpanded ? 'auto' : `${CARD_COLLAPSED_HEIGHT}px`,
+          minHeight: isExpanded ? 'auto' : `${CARD_COLLAPSED_HEIGHT}px`
+        }}
+      >
+        <CardContent className="flex flex-col p-6">
+          <div className="relative mb-4">
+            <div
+              className="overflow-hidden transition-all duration-300 ease-in-out"
+              style={{
+                maxHeight: isExpanded ? 'none' : `${COLLAPSED_HEIGHT}px`,
+              }}
+            >
+              <p className="text-muted-foreground leading-relaxed">
+                &ldquo;{testimonial.content}&rdquo;
+              </p>
+            </div>
+            {/* Gradient fade for collapsed state */}
+            {!isExpanded && (
+              <div className="absolute bottom-0 left-0 right-0 h-16 bg-linear-to-t from-card via-card/80 to-transparent pointer-events-none" />
+            )}
+          </div>
+          
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="self-start text-primary hover:text-primary/80 text-xs md:text-sm h-auto p-0 mb-4 -mt-2"
+          >
+            {isExpanded ? 'Read Less' : 'Read More...'}
+          </Button>
+
+          <div className="flex items-center gap-4 mt-auto pt-2">
+            <Avatar className="size-12">
+              <AvatarImage
+                src={testimonial.avatar || testimonial.image}
+                alt={testimonial.name}
+              />
+              <AvatarFallback className="text-sm">
+                {testimonial.name
+                  .split(' ')
+                  .map((n) => n[0])
+                  .join('')
+                  .toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <h3 className="font-semibold">{testimonial.name}</h3>
+              <p className="text-sm text-muted-foreground">
+                {testimonial.role}
+                {testimonial.company && (
+                  <>
+                    {' '}
+                    <span className="text-muted-foreground/60">·</span>{' '}
+                    {testimonial.company}
+                  </>
+                )}
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+}
 
 export default function Testimonials() {
   return (
@@ -85,50 +174,7 @@ export default function Testimonials() {
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={testimonial.id} className="basis-full md:basis-1/2 lg:basis-1/3">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="p-1"
-                    style={{ willChange: 'opacity, transform' }}
-                  >
-                    <Card className="h-full flex flex-col">
-                      <CardContent className="flex flex-col grow p-6">
-                        <p className="text-muted-foreground mb-6 grow leading-relaxed">
-                          &ldquo;{testimonial.content}&rdquo;
-                        </p>
-                        <div className="flex items-center gap-4">
-                          <Avatar className="size-12">
-                            <AvatarImage
-                              src={testimonial.avatar || testimonial.image}
-                              alt={testimonial.name}
-                            />
-                            <AvatarFallback className="text-sm">
-                              {testimonial.name
-                                .split(' ')
-                                .map((n) => n[0])
-                                .join('')
-                                .toUpperCase()}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <h3 className="font-semibold">{testimonial.name}</h3>
-                            <p className="text-sm text-muted-foreground">
-                              {testimonial.role}
-                              {testimonial.company && (
-                                <>
-                                  {' '}
-                                  <span className="text-muted-foreground/60">·</span>{' '}
-                                  {testimonial.company}
-                                </>
-                              )}
-                            </p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
+                  <TestimonialCard testimonial={testimonial} index={index} />
                 </CarouselItem>
               ))}
             </CarouselContent>

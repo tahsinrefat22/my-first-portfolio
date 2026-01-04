@@ -11,6 +11,13 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { Github, ChevronDown, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 interface Project {
   id: number;
@@ -24,39 +31,25 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    name: 'Project One',
-    description: 'A full-stack web application built with React and Node.js that provides real-time collaboration features.',
-    image: '/Project1.png',
-    link: '#',
+    name: 'My Portfolio',
+    description: 'A modern, responsive personal portfolio website showcasing my skills, projects, and career journey. Built with Next.js, React, TypeScript, and Tailwind CSS. Features smooth animations, dark mode support, and a clean, professional design with sections for expertise, projects, testimonials, and contact information.',
+    image: '/Portfolio.png',
+    link: 'https://github.com/tahsinrefat22/my-first-portfolio',
   },
   {
     id: 2,
-    name: 'Project Two',
-    description: 'An AI-powered machine learning platform for data analysis and predictive modeling.',
-    image: '/Project2.png',
-    link: '#',
+    name: 'Kenakata.com',
+    description: 'A frontend website for e-commerce website for buying and selling products. Built with HTML, CSS, JavaScript. I built it during my 2nd year of university, for the frontend course of the semester.',
+    image: '/2nd-year-project.png',
+    link: 'https://github.com/tahsinrefat/tahsinrefat.github.io',
   },
   {
     id: 3,
-    name: 'Project Three',
-    description: 'A responsive e-commerce website with payment integration and inventory management.',
-    image: '/Project3.png',
-    link: '#',
+    name: 'Todo Management System',
+    description: 'A todo management system with a responsive UI built with ReactJS, Spring Boot and MySQL. It has a login/register system and a todo list with a CRUD operation. JWT authentication is used for the login/register system.',
+    image: '/tms.png',
+    link: 'https://github.com/tahsinrefat/todo-management-system.git',
   },
-//   {
-//     id: 4,
-//     name: 'Project Four',
-//     description: 'A mobile-first social media application with real-time messaging and content sharing.',
-//     image: '/project-4.jpg',
-//     link: '#',
-//   },
-//   {
-//     id: 5,
-//     name: 'Project Five',
-//     description: 'A cloud-based project management tool with team collaboration and task tracking.',
-//     image: '/project-5.jpg',
-//     link: '#',
-//   },
 ];
 
 export default function Projects() {
@@ -77,11 +70,73 @@ export default function Projects() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
             Recent Projects
           </h2>
-          <Button variant="outline" size="lg" asChild>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-              View Github
-            </a>
-          </Button>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                size="lg"
+                className="text-lg px-8 py-6 group flex items-center gap-3 relative overflow-hidden bg-linear-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 hover:scale-105 rounded-lg font-semibold border-0 before:absolute before:inset-0 before:bg-linear-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full hover:before:translate-x-full before:transition-transform before:duration-700 before:ease-in-out data-[state=open]:scale-105 [&[data-state=open]>svg:last-child]:rotate-180"
+              >
+                <Github className="w-5 h-5 relative z-10" />
+                <span className="relative z-10">View Github</span>
+                <ChevronDown className="w-4 h-4 relative z-10 transition-transform duration-300" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent 
+              className="w-80 p-2 bg-popover/95 backdrop-blur-sm border-2 shadow-xl" 
+              align="end"
+              sideOffset={8}
+            >
+              <div className="flex flex-col gap-1.5">
+                <div className="px-2 py-1.5 mb-1">
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                    GitHub Profiles
+                  </p>
+                </div>
+                <Link
+                  href="https://github.com/tahsinrefat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex items-start gap-3 rounded-lg px-4 py-3.5 transition-all duration-200 hover:bg-accent/80 hover:shadow-md border border-transparent hover:border-primary/20 cursor-pointer"
+                >
+                  <div className="mt-0.5 p-2 rounded-md bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                    <Github className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <p className="font-semibold text-sm group-hover:text-primary transition-colors">
+                        tahsinrefat
+                      </p>
+                      <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all opacity-0 group-hover:opacity-100" />
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      github.com/tahsinrefat
+                    </p>
+                  </div>
+                </Link>
+                <Link
+                  href="https://github.com/tahsinrefat22"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex items-start gap-3 rounded-lg px-4 py-3.5 transition-all duration-200 hover:bg-accent/80 hover:shadow-md border border-transparent hover:border-primary/20 cursor-pointer"
+                >
+                  <div className="mt-0.5 p-2 rounded-md bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                    <Github className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <p className="font-semibold text-sm group-hover:text-primary transition-colors">
+                        tahsinrefat22
+                      </p>
+                      <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all opacity-0 group-hover:opacity-100" />
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      github.com/tahsinrefat22
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
 
         {showCarousel ? (
