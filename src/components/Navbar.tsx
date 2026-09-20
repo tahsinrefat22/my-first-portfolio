@@ -131,8 +131,7 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-1">
-            {/* Below lg the CV lives in the bar, since the mobile menu has room for one action only */}
-            <Button size="sm" variant="secondary" asChild className="lg:hidden">
+            <Button size="sm" variant="secondary" asChild>
               <a href={CV_PDF_PATH} download={CV_FILENAME} aria-label="Download CV">
                 CV
                 <DownloadSimple weight="regular" className="opacity-60" />
