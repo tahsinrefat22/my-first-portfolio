@@ -1,0 +1,95 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "geist",
+        "createdAt": "2026-09-19T19:45:43.692Z",
+        "reason": "Plan section 4.2, approved: single family with weight-driven hierarchy (Linear single-voice principle); mono reserved for data"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          "src/components/showcase/*"
+        ],
+        "createdAt": "2026-09-20T08:58:04.407Z",
+        "reason": "Miniature depictions of third-party products' real designs (role=img), not this site's UI"
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "src/components/showcase/*"
+        ],
+        "createdAt": "2026-09-20T08:58:04.415Z",
+        "reason": "Miniature depictions of third-party products' real designs (role=img), not this site's UI"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "src/components/showcase/*"
+        ],
+        "createdAt": "2026-09-20T08:58:04.421Z",
+        "reason": "Miniature depictions of third-party products' real designs (role=img), not this site's UI"
+      },
+      {
+        "rule": "ai-color-palette",
+        "value": "*",
+        "files": [
+          "src/components/showcase/*"
+        ],
+        "createdAt": "2026-09-20T08:58:04.427Z",
+        "reason": "Miniature depictions of third-party products' real designs (role=img), not this site's UI"
+      },
+      {
+        "rule": "wide-tracking",
+        "value": "*",
+        "files": [
+          "src/components/showcase/*"
+        ],
+        "createdAt": "2026-09-20T08:58:04.434Z",
+        "reason": "Miniature depictions of third-party products' real designs (role=img), not this site's UI"
+      },
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "src/components/showcase/*"
+        ],
+        "createdAt": "2026-09-20T08:58:04.441Z",
+        "reason": "Miniature depictions of third-party products' real designs (role=img), not this site's UI"
+      },
+      {
+        "rule": "undersized-ui-text",
+        "value": "*",
+        "files": [
+          "src/components/showcase/*"
+        ],
+        "createdAt": "2026-09-20T08:58:04.447Z",
+        "reason": "Miniature depictions of third-party products' real designs (role=img), not this site's UI"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "src/components/showcase/*"
+        ],
+        "createdAt": "2026-09-20T08:58:04.454Z",
+        "reason": "Miniature depictions of third-party products' real designs (role=img), not this site's UI"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "src/components/showcase/*"
+        ],
+        "createdAt": "2026-09-20T08:58:04.462Z",
+        "reason": "Miniature depictions of third-party products' real designs (role=img), not this site's UI"
+      }
+    ]
+  }
+}

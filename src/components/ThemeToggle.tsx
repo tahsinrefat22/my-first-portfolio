@@ -1,63 +1,32 @@
 'use client';
 
-import React, { useCallback, useEffect, useState, startTransition } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 import { useTheme } from 'next-themes';
-import { useSettings } from '@/hooks/useSettings';
-import type { Mode } from '@/contexts/settingsContext';
 import { ThemeToggleButton } from '@/components/ui/shadcn-io/theme-toggle-button';
 
 const ThemeToggle = () => {
-  const { setTheme, theme: nextTheme, resolvedTheme } = useTheme();
-  const { settings, updateSettings } = useSettings();
-  const [mounted, setMounted] = useState(false);
+  const { setTheme, resolvedTheme } = useTheme();
+  // Hydration-safe mounted flag: false on the server, true once on the client
+  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
 
-  useEffect(() => {
-    startTransition(() => {
-      setMounted(true);
-    });
-  }, []);
+  const current = resolvedTheme === 'dark' ? 'dark' : 'light';
 
-  const handleThemeToggle = useCallback(() => {
-    // Get the actual resolved theme (resolvedTheme is the actual theme value, not 'system')
-    const actualTheme = resolvedTheme || nextTheme || settings.mode;
-    const currentMode = actualTheme === 'dark' ? 'dark' : 'light';
-    const newMode: Mode = currentMode === 'dark' ? 'light' : 'dark';
+  const toggle = useCallback(() => {
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  }, [current, setTheme]);
 
-    // Update theme (this is called inside startViewTransition by ThemeToggleButton)
-    const updatedSettings = {
-      ...settings,
-      mode: newMode,
-      theme: {
-        ...settings.theme,
-        styles: {
-          light: settings.theme.styles?.light || {},
-          dark: settings.theme.styles?.dark || {},
-        },
-      },
-    };
-    updateSettings(updatedSettings);
-    setTheme(newMode);
-  }, [settings, updateSettings, setTheme, resolvedTheme, nextTheme]);
-
-  // Get current theme from resolvedTheme (which gives actual 'light' or 'dark', not 'system')
-  const currentTheme = (resolvedTheme as 'light' | 'dark') || (nextTheme as 'light' | 'dark') || (settings.mode as 'light' | 'dark') || 'light';
-
-  if (!mounted) {
-    return (
-      <div className="h-9 w-9" />
-    );
-  }
+  // Reserve the slot before hydration so the nav does not shift
+  if (!mounted) return <div className="size-9" aria-hidden />;
 
   return (
     <ThemeToggleButton
-      theme={currentTheme}
-      onClick={handleThemeToggle}
+      theme={current}
+      onClick={toggle}
       variant="circle"
       start="center"
-      className="h-9 w-9"
+      className="size-9 rounded-full border-0 bg-transparent text-muted-foreground hover:bg-foreground/[0.04] hover:text-foreground"
     />
   );
 };
 
 export default ThemeToggle;
-

@@ -3,12 +3,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Enable View Transitions API */
+/* View Transitions API: used by the theme toggle's circle-expand */
 @view-transition {
   navigation: auto;
 }
 
-/* Set view transition name on root for theme transitions */
 :root {
   view-transition-name: root;
 }
@@ -16,119 +15,352 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-parkinsans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
+  --color-surface-1: var(--surface-1);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-soft: 0 24px 64px -24px var(--shadow-color);
+  --shadow-soft-sm: 0 12px 32px -16px var(--shadow-color);
 }
 
+/*
+  One family of cool neutrals (hue 265) and one accent (hue 185).
+  No pure white, no pure black, no second accent.
+*/
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 1rem;
+  --background: oklch(0.985 0.004 265);
+  --foreground: oklch(0.2 0.015 265);
+  --surface-1: oklch(0.965 0.005 265);
+  --card: oklch(0.99 0.003 265);
+  --card-foreground: oklch(0.2 0.015 265);
+  --popover: oklch(0.99 0.003 265);
+  --popover-foreground: oklch(0.2 0.015 265);
+  --primary: oklch(0.52 0.1 185);
+  --primary-foreground: oklch(0.985 0.004 265);
+  --secondary: oklch(0.95 0.006 265);
+  --secondary-foreground: oklch(0.2 0.015 265);
+  --muted: oklch(0.95 0.006 265);
+  --muted-foreground: oklch(0.46 0.02 265);
+  --accent: oklch(0.52 0.1 185 / 10%);
+  --accent-foreground: oklch(0.35 0.09 185);
+  --destructive: oklch(0.55 0.2 25);
+  --border: oklch(0.2 0.015 265 / 10%);
+  --input: oklch(0.2 0.015 265 / 10%);
+  --ring: oklch(0.52 0.1 185);
+  --shadow-color: oklch(0.2 0.015 265 / 18%);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: oklch(0.17 0.012 265);
+  --foreground: oklch(0.93 0.008 265);
+  --surface-1: oklch(0.2 0.014 265);
+  --card: oklch(0.21 0.014 265);
+  --card-foreground: oklch(0.93 0.008 265);
+  --popover: oklch(0.21 0.014 265);
+  --popover-foreground: oklch(0.93 0.008 265);
+  /* Lower chroma than light mode: the same 0.10 reads neon against near-black */
+  --primary: oklch(0.7 0.07 185);
+  --primary-foreground: oklch(0.15 0.02 185);
+  --secondary: oklch(0.24 0.014 265);
+  --secondary-foreground: oklch(0.93 0.008 265);
+  --muted: oklch(0.24 0.014 265);
+  --muted-foreground: oklch(0.7 0.015 265);
+  --accent: oklch(0.7 0.07 185 / 12%);
+  --accent-foreground: oklch(0.8 0.06 185);
+  --destructive: oklch(0.7 0.18 25);
+  --border: oklch(0.93 0.008 265 / 12%);
+  --input: oklch(0.93 0.008 265 / 12%);
+  --ring: oklch(0.7 0.07 185);
+  --shadow-color: oklch(0.05 0.01 265 / 50%);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
+
   html {
     scroll-behavior: smooth;
+    color-scheme: light;
   }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Browser surfaces belong to the palette too */
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 0.25rem;
+  }
+
+  input, textarea {
+    caret-color: var(--primary);
+  }
+
+  a {
+    text-underline-offset: 0.2em;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklch, var(--foreground) 18%, transparent);
+    border-radius: 999px;
+    border: 3px solid var(--background);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklch, var(--foreground) 30%, transparent);
+  }
+  html {
+    scrollbar-color: color-mix(in oklch, var(--foreground) 18%, transparent) transparent;
+    scrollbar-width: thin;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-6 md:px-8;
+  }
+
+  /* 58ch of Geist fits roughly 72 to 76 real characters per line */
+  .prose-measure {
+    max-width: 58ch;
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-soft-sm {
+    box-shadow: var(--shadow-soft-sm);
+  }
+
+  .ease-out-expo {
+    transition-timing-function: var(--ease-out-expo);
+  }
+
+  /* Hero scroll cue: the wheel inside a mouse outline rolls down and fades */
+  @keyframes scroll-wheel {
+    0% { transform: translateY(0); opacity: 0; }
+    20% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { transform: translateY(12px); opacity: 0; }
+  }
+  .scroll-wheel {
+    animation: scroll-wheel 1.8s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+  }
+
+  /*
+    Product miniatures: hold on the landing hero, slide up by half (one window) to the
+    dashboard, hold, slide back. Paused until on screen.
+  */
+  @keyframes showcase-loop {
+    0%, 32% { transform: translateY(0%); }
+    46%, 82% { transform: translateY(-50%); }
+    96%, 100% { transform: translateY(0%); }
+  }
+  .showcase-loop {
+    animation: showcase-loop 10s var(--ease-out-expo) infinite;
+    animation-play-state: paused;
+  }
+  .showcase-loop[data-play] {
+    animation-play-state: running;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .showcase-loop {
+      animation: none;
+    }
+  }
+
+  /*
+    Hero footage, fixed to the viewport so the page slides up over it. The clip is already
+    cool-toned, so it only gets dimmed and slightly desaturated to sit behind the type. The
+    scrim is the page colour, solid at the top so the navbar sits on clean ground.
+  */
+  .hero-video {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background: var(--background);
+  }
+  /* Fully covered by the sections above it: stop painting and decoding */
+  .hero-video[data-off] {
+    visibility: hidden;
+  }
+  .hero-video video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.5) brightness(1.2) contrast(0.85);
+  }
+  .dark .hero-video video {
+    filter: saturate(0.75) brightness(0.75);
+  }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background:
+      linear-gradient(
+        to bottom,
+        var(--background) 0%,
+        color-mix(in oklch, var(--background) 66%, transparent) 28%,
+        color-mix(in oklch, var(--background) 66%, transparent) 72%,
+        var(--background) 100%
+      );
+  }
+  .dark .hero-scrim {
+    background:
+      linear-gradient(
+        to bottom,
+        var(--background) 0%,
+        color-mix(in oklch, var(--background) 42%, transparent) 28%,
+        color-mix(in oklch, var(--background) 42%, transparent) 72%,
+        var(--background) 100%
+      );
+  }
+
+  /*
+    GitHub heatmap under the About portrait. The SVG scales to its column; the cells stay
+    hidden until the graph first enters the viewport, then fill in column by column.
+  */
+  .contrib-graph {
+    position: relative;
+    line-height: 0;
+  }
+  .contrib-bright {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .contrib-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .contrib-cell {
+    fill: color-mix(in oklch, var(--foreground) 6%, transparent);
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .contrib-graph[data-in] .contrib-cell {
+    animation: contrib-in 700ms var(--ease-out-expo) forwards;
+    animation-delay: calc(var(--i) * 20ms);
+  }
+  .contrib-cell[data-level="1"] { fill: color-mix(in oklch, var(--primary) 24%, transparent); }
+  .contrib-cell[data-level="2"] { fill: color-mix(in oklch, var(--primary) 42%, transparent); }
+  .contrib-cell[data-level="3"] { fill: color-mix(in oklch, var(--primary) 62%, transparent); }
+  .contrib-cell[data-level="4"] { fill: color-mix(in oklch, var(--primary) 85%, transparent); }
+  /* The spotlight copy: the same cells, brighter, revealed only under the cursor */
+  .contrib-svg-bright .contrib-cell { fill: color-mix(in oklch, var(--foreground) 14%, transparent); }
+  .contrib-svg-bright .contrib-cell[data-level="1"] { fill: color-mix(in oklch, var(--primary) 55%, transparent); }
+  .contrib-svg-bright .contrib-cell[data-level="2"] { fill: color-mix(in oklch, var(--primary) 72%, transparent); }
+  .contrib-svg-bright .contrib-cell[data-level="3"] { fill: color-mix(in oklch, var(--primary) 90%, transparent); }
+  .contrib-svg-bright .contrib-cell[data-level="4"] { fill: var(--primary); }
+  @keyframes contrib-in {
+    from { opacity: 0; transform: scale(0.6); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .contrib-cell {
+      animation: none;
+      opacity: 1;
+    }
+  }
+
+  /*
+    Logos rendered as one neutral family regardless of source colour.
+    Dark mode inverts after the grayscale so black marks become light ones.
+  */
+  .logo-mark {
+    filter: grayscale(1);
+    opacity: 0.6;
+    transition: filter 300ms var(--ease-out-expo), opacity 300ms var(--ease-out-expo);
+  }
+  .dark .logo-mark {
+    filter: grayscale(1) invert(1);
+    opacity: 0.55;
+  }
+  /* Opaque icon tiles are only greyed in dark mode, never inverted */
+  .dark .logo-chip[data-tile] .logo-mark {
+    filter: grayscale(1);
+    opacity: 0.7;
+  }
+  /* Hover: the mark returns to its original colours, on transparent, in both modes. No chip background. */
+  .logo-chip:hover .logo-mark {
+    filter: none;
+    opacity: 1;
+  }
+  /*
+    A black mark has no colour to return to on a dark page. Invert lifts black to white, and the
+    180-degree hue rotation brings any coloured parts back to their own hue, so a mark like
+    HighLevel keeps its yellow, blue, and green arrows while its black text turns white.
+  */
+  .dark .logo-chip[data-dark-mark]:hover .logo-mark {
+    filter: invert(1) hue-rotate(180deg);
   }
 }

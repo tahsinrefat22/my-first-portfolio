@@ -1,6 +1,6 @@
 'use client';
 
-import { Moon, Sun } from 'lucide-react';
+import { Moon, Sun } from '@phosphor-icons/react';
 import { useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -201,7 +201,7 @@ export const ThemeToggleButton = ({
 
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       size={showLabel ? 'default' : 'icon'}
       onClick={(e) => handleClick(e)}
       className={cn(
@@ -212,9 +212,9 @@ export const ThemeToggleButton = ({
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
     >
       {theme === 'light' ? (
-        <Sun className="h-[1.2rem] w-[1.2rem]" />
+        <Sun weight="regular" className="size-5" />
       ) : (
-        <Moon className="h-[1.2rem] w-[1.2rem]" />
+        <Moon weight="regular" className="size-5" />
       )}
       {showLabel && (
         <span className="text-sm">
