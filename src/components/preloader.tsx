@@ -89,9 +89,14 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
     return () => window.clearTimeout(t);
   }, [done, reduce]);
 
+  /*
+    The sheet comes before the page in the markup on purpose. The HTML is large (the
+    product miniatures) and browsers paint as it streams in, so if the sheet came last
+    the hero would show for a moment before the sheet's bytes arrived. z-index keeps
+    it on top either way.
+  */
   return (
     <LoadingContext.Provider value={ready}>
-      {children}
       <AnimatePresence>
         {!ready && (
           <motion.div
@@ -120,6 +125,7 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
           </motion.div>
         )}
       </AnimatePresence>
+      {children}
     </LoadingContext.Provider>
   );
 }
