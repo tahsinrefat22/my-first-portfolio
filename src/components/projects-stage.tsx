@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useSyncExternalStore } from 'react';
+import { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { ArrowUpRight } from '@phosphor-icons/react';
 import { Section } from '@/components/section';
@@ -38,25 +38,16 @@ const OFFSET: Record<Edge, { axis: 'x' | 'y'; from: string; to: string }> = {
   right: { axis: 'x', from: '110vw', to: '0vw' },
 };
 
-const LG = '(min-width: 1024px)';
-const subscribeLg = (cb: () => void) => {
-  const mq = window.matchMedia(LG);
-  mq.addEventListener('change', cb);
-  return () => mq.removeEventListener('change', cb);
-};
-const getLg = () => window.matchMedia(LG).matches;
-
 /*
   The products section as a scroll-driven stage. One product at a time fills the stage,
   the looping miniature above and its description below. Scrolling
   brings the next one in over the current one from the left, then the right, then the
-  bottom, then the top. Below lg, and under reduced motion, it is a plain stacked list.
+  bottom, then the top, on every screen size. Under reduced motion it is a plain stacked list.
 */
 export function ProjectsStage() {
   const reduce = useReducedMotion();
-  const lg = useSyncExternalStore(subscribeLg, getLg, () => false);
 
-  if (!lg || reduce) return <ProjectsList />;
+  if (reduce) return <ProjectsList />;
   return <PinnedStage />;
 }
 

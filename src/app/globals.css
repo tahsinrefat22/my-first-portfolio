@@ -267,8 +267,8 @@
       linear-gradient(
         to bottom,
         var(--background) 0%,
-        color-mix(in oklch, var(--background) 78%, transparent) 28%,
-        color-mix(in oklch, var(--background) 78%, transparent) 72%,
+        color-mix(in oklch, var(--background) 66%, transparent) 28%,
+        color-mix(in oklch, var(--background) 66%, transparent) 72%,
         var(--background) 100%
       );
   }
@@ -277,8 +277,8 @@
       linear-gradient(
         to bottom,
         var(--background) 0%,
-        color-mix(in oklch, var(--background) 55%, transparent) 28%,
-        color-mix(in oklch, var(--background) 55%, transparent) 72%,
+        color-mix(in oklch, var(--background) 42%, transparent) 28%,
+        color-mix(in oklch, var(--background) 42%, transparent) 72%,
         var(--background) 100%
       );
   }
