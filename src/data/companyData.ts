@@ -2,6 +2,10 @@ export interface CompanyData {
   name: string;
   title: string;
   period: string;
+  /** Shown under the title on the career page, e.g. a transfer within the same group */
+  note?: string;
+  /** A few words of the same, for the compact timeline row */
+  noteShort?: string;
   description: string[];
   technologies?: string[];
   lifeAtCompany?: Array<{ image?: string; text: string }>;
@@ -35,23 +39,26 @@ export const companyData: Record<string, CompanyData> = {
     ],
   },
   'spacesoft': {
-    name: 'SpaceSoft Ltd',
+    name: 'SpaceSoft Ltd, now Softwarelify',
     title: 'Software Developer',
     period: 'Aug 2025 - Present',
+    note: 'Transferred within the group to Softwarelify, a sister company under the same ownership, in August 2026. Same team, same products.',
+    noteShort: 'Transferred within the group, Aug 2026. Same team.',
     linkedinUrl: 'https://www.linkedin.com/company/spacesoft-ltd/',
     description: [
       'As a Junior Software Developer, I was responsible for many tasks related to the development of the AI based web applications and GEO tools for SpaceSoft Ltd. I have handled many tasks related to the development of the web applications and APIs such as RESTful API, Team Project etc.',
+      'In August 2026 I moved with the same team to Softwarelify, a sister company under the same ownership, where the work continues on the same products.',
     ],
     technologies: ['NextJS', 'ReactJS', 'Fastify', 'PayloadCMS', 'TailwindCSS', 'PostgreSQL', 'Temporal', 'Typescript', 'HTML', 'CSS', 'Docker', 'Ubuntu'],
     lifeAtCompany: [
       { image: '/SpaceSoft-1.png', text: 'In this company, I have been working on many projects that has boosted my skills and knowledge about the web development and the AI based web applications and GEO tools. Mostly it has also developed my ability to understand the codebase and the architecture of the projects as well as business logic and requirements.' },
-      { image: '/SpaceSoft-2.png', text: 'In this company, I have worked on the AI Chatbot based Project named "Salestial AI" and a GEO tool named "RankFlo". Both these projects have been a great learning experience for me. I have gained knowledge about the AI based web applications and GEO tools as well as the development of the web applications and APIs, trending technologies and frameworks such as NextJS, ReactJS, Fastify, PayloadCMS, TailwindCSS, PostgreSQL, Temporal, Typescript, Docker.' },
+      { image: '/SpaceSoft-2.png', text: 'In this company, I have worked on the AI Chatbot based Project named "Salestial AI" and a GEO tool named "Rankflo". Both these projects have been a great learning experience for me. I have gained knowledge about the AI based web applications and GEO tools as well as the development of the web applications and APIs, trending technologies and frameworks such as NextJS, ReactJS, Fastify, PayloadCMS, TailwindCSS, PostgreSQL, Temporal, Typescript, Docker.' },
       { image: '/SpaceSoft-3.png', text: 'I have a very good and helpful as well understanding team and a great Team Lead who is always there to help me and guide me. I have learned a lot from him and the other members of the team. My team consists of Afsan Rahmatullah (Team Lead), MD Ashfakul Karim Kausik (Product Manager), Ariful Islam (Sotware Developer), Sumit Das (Sotware Developer), and myself (Junior Software Developer).' },
     ],
     achievements: [
       'Developed AI-based web applications and GEO tools for SpaceSoft Ltd',
       'Worked on "Salestial AI" project, an AI RAG Chatbot-based application',
-      'Contributed to "RankFlo" project, a GEO tool for location-based services',
+      'Contributed to "Rankflo" project, a GEO tool for location-based services',
       'Developed RESTful APIs for scalable web applications',
       'Developed APIs using TRPC',
       'Gained expertise in modern technologies including NextJS, ReactJS, Fastify, PayloadCMS, and Temporal',

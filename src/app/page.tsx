@@ -11,15 +11,20 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className="bg-zinc-50 font-sans dark:bg-black w-full overflow-x-hidden">
+      <main id="main" className="overflow-x-clip">
         <Hero />
-        <Expertise />
-        <About />
-        <Projects />
-        <Testimonials />
-        <CTA />
-        <Footer />
-      </div>
+        {/* The hero footage is fixed to the viewport; this opaque layer slides up over it */}
+        <div className="relative z-10 bg-background">
+          {/* Same fade as the bottom of the hero scrim, carried on the layer's top edge */}
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-full h-[28vh] bg-linear-to-t from-background to-transparent" />
+          <Expertise />
+          <About />
+          <Projects />
+          <Testimonials />
+          <CTA />
+          <Footer />
+        </div>
+      </main>
     </>
   );
 }

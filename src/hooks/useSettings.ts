@@ -1,2 +1,0 @@
-export { useSettings } from '@/contexts/settingsContext';
-
