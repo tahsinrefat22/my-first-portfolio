@@ -42,16 +42,15 @@ export default function About() {
           {/* Copy: drafted from the career data. Replace with your own words. */}
           <Reveal delay={60} className="prose-measure flex flex-col gap-5 text-base text-muted-foreground md:text-lg">
             <p>
-              Full-stack developer. I started on ERPNext at Fusion Infotech, building attendance,
-              shift, and reporting features. Since 2025 I have been at SpaceSoft, now Softwarelify,
-              building AI-driven web products on Next.js, Fastify, and PostgreSQL.
+              Full-stack developer. I started on ERPNext at Fusion Infotech, and since 2025 I have
+              built AI-driven web products at SpaceSoft, now Softwarelify, on Next.js, Fastify, and
+              PostgreSQL.
             </p>
             <p>
-              I also build GoHighLevel marketplace apps, three of them live, and do GHL work for
-              agencies: snapshots, automations, integrations, and fixes. The servers they run on,
-              AWS EC2 and Hostinger VPS, are mine to set up and keep running.
+              I also build GoHighLevel marketplace apps, three of them live, do GHL work for
+              agencies, and run the servers it all ships on. I care most about the parts of a
+              system that people touch every day.
             </p>
-            <p>I care most about the parts of a system that people touch every day.</p>
           </Reveal>
 
           <Reveal delay={120}>
