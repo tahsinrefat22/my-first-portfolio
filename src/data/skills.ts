@@ -50,6 +50,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
       { name: 'MariaDB', logo: '/mariadb.png', darkMark: true },
       { name: 'Oracle', logo: '/oracle-sql-logo-removebg-preview.png' },
       { name: 'Ubuntu', logo: '/ubuntu.png' },
+      { name: 'Nginx', logo: '/nginx.png' },
       { name: 'Docker', logo: '/docker.png' },
       { name: 'AWS', logo: '/aws.png', darkMark: true },
       { name: 'Hostinger', logo: '/hostinger.png' },
