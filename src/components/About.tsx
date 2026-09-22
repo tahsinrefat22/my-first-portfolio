@@ -60,7 +60,7 @@ export default function About() {
               <dt className="text-muted-foreground">Focus</dt>
               <dd className="font-medium">Web products, GoHighLevel, ERP systems</dd>
               <dt className="text-muted-foreground">Services</dt>
-              <dd className="font-medium">GHL marketplace apps, snapshots, workflow automations, integrations, fixes, and server setup</dd>
+              <dd className="font-medium">GHL marketplace apps, snapshots, workflow automations, integrations, fixes, and server setup with Nginx on AWS EC2 and Hostinger VPS</dd>
             </dl>
           </Reveal>
 
