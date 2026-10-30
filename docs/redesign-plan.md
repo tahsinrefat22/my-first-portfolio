@@ -127,6 +127,8 @@ Written in impeccable's six-block form so the build has a target it can be revie
 
 *Amendment, owner's request after build:* a scroll cue at bottom centre, `md` and up. The skills ban this pattern; the owner chose to break the rule here, deliberately. Built as a mouse outline with a rolling wheel and a "Scroll for more" label, linking to the next section, fading out over the first 120px of scroll, wheel static under reduced motion.
 
+*Amendment, owner's request after build:* a seventh section, Open source (`#open-source`, between Projects and Testimonials, tinted, with its own nav link). A merged upstream pull request is told as a short story (what was wrong, what changed, opened / merged / released) beside the cases from its own tests, then maintained projects follow as a list shaped like the career timeline. Projects gains a sixth product, Inkharbor, the owner's open-source Android app for Outline; its miniature is phones rather than a browser window, and the stage's scroll track now grows with the number of products so each keeps the same room.
+
 **FORM.** Editorial split for the hero; asymmetric bento (2+1) for projects; cardless two-column grid for testimonials; centred single-message block for the CTA. Four distinct layout families across seven sections.
 
 **Signature interaction.** The footer illumination, retained and refined. Secondary: the button-in-button arrow that translates diagonally on hover.

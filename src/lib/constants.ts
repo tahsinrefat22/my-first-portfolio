@@ -1,11 +1,12 @@
 // Navigation sections, in page order
-export const NAVIGATION_SECTIONS = ['hero', 'expertise', 'about', 'projects', 'testimonials', 'contact'] as const;
+export const NAVIGATION_SECTIONS = ['hero', 'expertise', 'about', 'projects', 'open-source', 'testimonials', 'contact'] as const;
 
 export const NAV_LINKS: { href: `#${(typeof NAVIGATION_SECTIONS)[number]}`; label: string }[] = [
   { href: '#hero', label: 'Home' },
   { href: '#expertise', label: 'Expertise' },
   { href: '#about', label: 'About' },
   { href: '#projects', label: 'Projects' },
+  { href: '#open-source', label: 'Open source' },
   { href: '#testimonials', label: 'Testimonials' },
   { href: '#contact', label: 'Contact' },
 ];

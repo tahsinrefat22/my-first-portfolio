@@ -24,7 +24,7 @@ pnpm lint
 ```
 src/app/            routes: /, /career?company=<slug>, not-found, generated OG image
 src/components/     one file per section, plus section / section-heading / bezel / reveal primitives
-src/data/           projects, testimonials, skills, career entries, team links
+src/data/           projects, open-source work, testimonials, skills, career entries, team links
 src/lib/constants   nav, contact, social, z-index scale
 docs/               redesign plan and notes
 ```
@@ -37,6 +37,6 @@ The direction and its rationale are in `docs/redesign-plan.md`. In short: one fa
 
 ## Content that is mine to update
 
-- `src/data/projects.ts`, `testimonials.ts`, `skills.ts`, `companyData.ts`
+- `src/data/projects.ts`, `openSource.ts`, `testimonials.ts`, `skills.ts`, `companyData.ts`
 - Copy in `Hero.tsx`, `About.tsx`, `CTA.tsx`
 - `public/portrait.png`, `public/portrait-casual.png`, project screenshots
