@@ -11,10 +11,17 @@ export interface Project {
   showcase: ShowcaseId;
   /** What Tahsin did on it. Fill in per product. */
   role?: string;
+  /** A few words beside the slide's number, e.g. that it's open source */
+  tag?: string;
+  /** The link button's label; "Visit <name>" when left out */
+  linkLabel?: string;
+  /** What the miniature shows, for assistive tech; its landing page, then dashboard, when left out */
+  showcaseLabel?: string;
 }
 
 /*
-  All five are live products built with the same team at SpaceSoft and then Softwarelify.
+  The first five are live products built with the same team at SpaceSoft and then
+  Softwarelify. Inkharbor is Tahsin's own open-source app.
   Summaries come from each product's own README or landing copy, not invented.
   TODO(owner): set `role` per product; the career data only names Rankflo and Salestial explicitly.
 */
@@ -65,5 +72,18 @@ export const PROJECTS: Project[] = [
       'Live social-proof notifications for GoHighLevel funnels. Install once per agency; every sub-account runs its own campaigns from a dashboard.',
     stack: ['React', 'Next.js', 'Prisma', 'PostgreSQL'],
     showcase: 'provelify',
+  },
+  {
+    id: 'inkharbor',
+    name: 'Inkharbor',
+    url: 'https://github.com/tahsinrefat22/inkharbor',
+    summary:
+      "An unofficial Android app for Outline wikis: browse, search, comment and edit, with offline copies and sign-in through the server's own login.",
+    stack: ['Expo', 'React Native', 'TypeScript', 'ProseMirror', 'SQLite', 'OAuth + PKCE'],
+    showcase: 'inkharbor',
+    role: 'Author and maintainer',
+    tag: 'Open source, MIT',
+    linkLabel: 'View on GitHub',
+    showcaseLabel: 'Inkharbor: its home screen, then the reader, editor, comments and search on Android',
   },
 ];

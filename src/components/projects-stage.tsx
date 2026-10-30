@@ -14,7 +14,7 @@ import { PROJECTS, type Project } from '@/data/projects';
 import { cn } from '@/lib/utils';
 
 const LEDE =
-  'Five live products built with one team across SpaceSoft and Softwarelify, three of them GoHighLevel marketplace apps. Each one plays from its landing page into the app.';
+  'Five live products built with one team across SpaceSoft and Softwarelify, three of them GoHighLevel marketplace apps, and Inkharbor, an open-source Android app of my own.';
 
 type Edge = 'top' | 'right' | 'bottom' | 'left';
 
@@ -22,13 +22,16 @@ type Edge = 'top' | 'right' | 'bottom' | 'left';
 const EDGES: Edge[] = ['left', 'right', 'bottom', 'top'];
 
 /*
-  Scroll progress windows. Each arrival takes DUR of the track; the rest is hold time, so
-  a product sits still long enough to be looked at before the next one lands.
+  Scroll distances, in viewport heights. Each arrival takes DUR; the rest is hold time, so
+  a product sits still long enough to be looked at before the next one lands. The track
+  grows with the number of products, so each one gets the same room however many there are.
 */
-const LEAD = 0.06;
-const STEP = 0.22;
-const DUR = 0.14;
-const arrival = (i: number): [number, number] => [LEAD + (i - 1) * STEP, LEAD + (i - 1) * STEP + DUR];
+const LEAD = 24;
+const STEP = 88;
+const DUR = 56;
+const TAIL = 56;
+const RANGE = LEAD + (PROJECTS.length - 2) * STEP + DUR + TAIL;
+const arrival = (i: number): [number, number] => [(LEAD + (i - 1) * STEP) / RANGE, (LEAD + (i - 1) * STEP + DUR) / RANGE];
 
 /* Start and end share a unit so the interpolation stays in viewport units */
 const OFFSET: Record<Edge, { axis: 'x' | 'y'; from: string; to: string }> = {
@@ -86,8 +89,8 @@ function PinnedStage() {
       <div className="container-page">
         <Header />
       </div>
-      {/* Five screens of scroll; the stage inside stays pinned for the middle of it */}
-      <div ref={track} className="relative h-[500vh]">
+      {/* RANGE of scroll plus the stage's own screen; the stage inside stays pinned throughout */}
+      <div ref={track} className="relative" style={{ height: `${RANGE + 100}vh` }}>
         <div className="sticky top-0 h-dvh overflow-hidden pt-24 pb-6">
           <div className="container-page h-full">
             {/* The stacked slides fill this box, inside the page gutters, top to bottom */}
@@ -160,12 +163,22 @@ function ProductSlide({ project, index, onStage }: { project: Project; index: nu
           onStage && 'max-w-[calc((100dvh-22rem)*2)]'
         )}
       >
-        <Showcase hero={showcase.hero} dashboard={showcase.dashboard} label={`${project.name}: landing page, then dashboard`} />
+        <Showcase
+          hero={showcase.hero}
+          dashboard={showcase.dashboard}
+          label={project.showcaseLabel ?? `${project.name}: landing page, then dashboard`}
+        />
       </div>
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-10">
         <div className="flex flex-col gap-3">
           <span className="font-mono text-xs text-muted-foreground">
             {String(index + 1).padStart(2, '0')} / {String(PROJECTS.length).padStart(2, '0')}
+            {project.tag && (
+              <>
+                <span className="mx-1.5 opacity-50">&middot;</span>
+                {project.tag}
+              </>
+            )}
           </span>
           <h3 className="text-2xl font-medium tracking-[-0.01em] md:text-3xl">{project.name}</h3>
           <p className="prose-measure text-muted-foreground md:text-lg">{project.summary}</p>
@@ -177,7 +190,7 @@ function ProductSlide({ project, index, onStage }: { project: Project; index: nu
         </div>
         <Button size="lg" variant="secondary" asChild className="shrink-0">
           <a href={project.url} target="_blank" rel="noopener noreferrer">
-            Visit {project.name}
+            {project.linkLabel ?? `Visit ${project.name}`}
             <ArrowUpRight weight="regular" className="opacity-60" />
           </a>
         </Button>
